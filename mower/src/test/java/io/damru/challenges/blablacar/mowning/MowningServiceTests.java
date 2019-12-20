@@ -60,4 +60,32 @@ public class MowningServiceTests {
         assertEquals(3, mower.getY(), "Mower's last Y position");
     }
 
+    @Test
+    public void should_return_mower_last_position_within_the_lawn_perimeter() {
+        // Given
+        lawn = new Lawn();
+        lawn.setXMax(1);
+        lawn.setYMax(1);
+
+        mowersCourses = new HashMap<>();
+        Mower mowerConfig = new Mower();
+        ArrayList<Action> actionsConfig = new ArrayList<>();
+        mowerConfig.setOrientation(Orientation.SOUTH);
+        mowerConfig.setX(0);
+        mowerConfig.setY(1);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.LEFT);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.FORWARD);
+        mowersCourses.put(mowerConfig, actionsConfig);
+
+        // When
+        Set<Mower> mowers = mowningService.mow(lawn, mowersCourses);
+
+        // Then
+        Mower mower = mowers.stream().findFirst().get();
+        assertEquals(1, mower.getX(), "Mower's last X position");
+        assertEquals(0, mower.getY(), "Mower's last Y position");
+    }
 }
