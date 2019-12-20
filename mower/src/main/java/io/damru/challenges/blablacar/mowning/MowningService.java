@@ -6,15 +6,15 @@ import io.damru.challenges.blablacar.mowning.model.Mower;
 import io.damru.challenges.blablacar.mowning.model.Orientation;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Set;
 
 @Service
 class MowningService {
 
 
-    public Set<Mower> mow(Lawn lawn, HashMap<Mower, LinkedList<Action>> mowersCourses) {
+    public Set<Mower> mow(Lawn lawn, HashMap<Mower, ArrayList<Action>> mowersCourses) {
         mowersCourses.forEach((mower, actions) -> actions.forEach(action -> move(lawn, mower, action)));
         return mowersCourses.keySet();
     }
@@ -63,23 +63,23 @@ class MowningService {
     private void go(Lawn lawn, Mower mower) {
         switch (mower.getOrientation()) {
             case NORTH:
-                if (mower.getX() + 1 <= lawn.getXMax()) {
-                    mower.setX(mower.getX() + 1);
-                }
-                break;
-            case SOUTH:
-                if (mower.getX() - 1 >= lawn.getXMin()) {
-                    mower.setX(mower.getX() - 1);
-                }
-                break;
-            case EAST:
                 if (mower.getY() + 1 <= lawn.getYMax()) {
                     mower.setY(mower.getY() + 1);
                 }
                 break;
-            case WEST:
-                if (mower.getY() - 1 <= lawn.getYMin()) {
+            case SOUTH:
+                if (mower.getY() - 1 >= lawn.getYMin()) {
                     mower.setY(mower.getY() - 1);
+                }
+                break;
+            case EAST:
+                if (mower.getX() + 1 <= lawn.getXMax()) {
+                    mower.setX(mower.getX() + 1);
+                }
+                break;
+            case WEST:
+                if (mower.getX() - 1 <= lawn.getXMin()) {
+                    mower.setX(mower.getX() - 1);
                 }
                 break;
         }

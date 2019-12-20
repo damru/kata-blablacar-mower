@@ -7,8 +7,8 @@ import io.damru.challenges.blablacar.mowning.model.Orientation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +17,7 @@ public class MowningServiceTests {
 
     private static MowningService mowningService;
     private static Lawn lawn;
-    private static HashMap<Mower, LinkedList<Action>> mowersCourses;
+    private static HashMap<Mower, ArrayList<Action>> mowersCourses;
 
     @BeforeAll
     public static void init() {
@@ -34,19 +34,19 @@ public class MowningServiceTests {
 
         mowersCourses = new HashMap<>();
         Mower mowerConfig = new Mower();
-        LinkedList<Action> actionsConfig = new LinkedList<>();
+        ArrayList<Action> actionsConfig = new ArrayList<>();
         mowerConfig.setOrientation(Orientation.NORTH);
         mowerConfig.setX(1);
         mowerConfig.setY(2);
-        actionsConfig.push(Action.LEFT);
-        actionsConfig.push(Action.FORWARD);
-        actionsConfig.push(Action.LEFT);
-        actionsConfig.push(Action.FORWARD);
-        actionsConfig.push(Action.LEFT);
-        actionsConfig.push(Action.FORWARD);
-        actionsConfig.push(Action.LEFT);
-        actionsConfig.push(Action.FORWARD);
-        actionsConfig.push(Action.FORWARD);
+        actionsConfig.add(Action.LEFT);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.LEFT);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.LEFT);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.LEFT);
+        actionsConfig.add(Action.FORWARD);
+        actionsConfig.add(Action.FORWARD);
         mowersCourses.put(mowerConfig, actionsConfig);
 
         // When

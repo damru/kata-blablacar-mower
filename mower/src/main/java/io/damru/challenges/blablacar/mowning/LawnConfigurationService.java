@@ -12,7 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 @Service
 public class LawnConfigurationService {
@@ -32,7 +32,7 @@ public class LawnConfigurationService {
                 Mower mower = mowerConfiguration(values, lineIndex);
                 char[] courseConfig = reader.readLine().toCharArray();
                 lineIndex++;
-                LinkedList<Action> course = courseConfiguration(courseConfig, lineIndex);
+                ArrayList<Action> course = courseConfiguration(courseConfig, lineIndex);
                 lawnConfiguration.addMowerCourse(mower, course);
             }
             lineIndex++;
@@ -40,8 +40,8 @@ public class LawnConfigurationService {
         return lawnConfiguration;
     }
 
-    private LinkedList<Action> courseConfiguration(char[] courseConfig, int lineIndex) {
-        LinkedList<Action> course = new LinkedList<>();
+    private ArrayList<Action> courseConfiguration(char[] courseConfig, int lineIndex) {
+        ArrayList<Action> course = new ArrayList<>();
         for (int i = 0; i < courseConfig.length; i++) {
             try {
                 course.add(Action.fromLabel(String.valueOf(courseConfig[i])));
