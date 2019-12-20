@@ -1,10 +1,10 @@
-package io.damru.challenges.blablacar.mower;
+package io.damru.challenges.blablacar.mowning;
 
-import io.damru.challenges.blablacar.mower.model.Action;
-import io.damru.challenges.blablacar.mower.model.Lawn;
-import io.damru.challenges.blablacar.mower.model.LawnConfiguration;
-import io.damru.challenges.blablacar.mower.model.Mower;
-import io.damru.challenges.blablacar.mower.model.Orientation;
+import io.damru.challenges.blablacar.mowning.model.Action;
+import io.damru.challenges.blablacar.mowning.model.Lawn;
+import io.damru.challenges.blablacar.mowning.model.LawnConfiguration;
+import io.damru.challenges.blablacar.mowning.model.Mower;
+import io.damru.challenges.blablacar.mowning.model.Orientation;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;

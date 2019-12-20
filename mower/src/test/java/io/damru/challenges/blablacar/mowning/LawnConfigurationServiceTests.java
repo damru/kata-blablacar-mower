@@ -1,10 +1,10 @@
-package io.damru.challenges.blablacar.mower.service;
+package io.damru.challenges.blablacar.mowning;
 
 
-import io.damru.challenges.blablacar.mower.LawnConfigurationService;
-import io.damru.challenges.blablacar.mower.model.LawnConfiguration;
-import io.damru.challenges.blablacar.mower.model.Mower;
-import io.damru.challenges.blablacar.mower.model.Orientation;
+import io.damru.challenges.blablacar.mowning.LawnConfigurationService;
+import io.damru.challenges.blablacar.mowning.model.LawnConfiguration;
+import io.damru.challenges.blablacar.mowning.model.Mower;
+import io.damru.challenges.blablacar.mowning.model.Orientation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

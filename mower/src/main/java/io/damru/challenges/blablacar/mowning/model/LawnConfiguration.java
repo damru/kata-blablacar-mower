@@ -1,4 +1,4 @@
-package io.damru.challenges.blablacar.mower.model;
+package io.damru.challenges.blablacar.mowning.model;
 
 import lombok.Getter;
 import lombok.Setter;

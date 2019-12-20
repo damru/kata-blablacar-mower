@@ -1,4 +1,4 @@
-package io.damru.challenges.blablacar.mower;
+package io.damru.challenges.blablacar.mowning;
 
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
@@ -9,7 +9,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.io.File;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class BlaBlaCarMowApplicationTests {
+class BlaBlaCarMowningApplicationTests {
 
     @LocalServerPort
     private int port;

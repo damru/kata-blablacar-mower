@@ -1,10 +1,9 @@
-package io.damru.challenges.blablacar.mower.service;
+package io.damru.challenges.blablacar.mowning;
 
-import io.damru.challenges.blablacar.mower.MowService;
-import io.damru.challenges.blablacar.mower.model.Action;
-import io.damru.challenges.blablacar.mower.model.Lawn;
-import io.damru.challenges.blablacar.mower.model.Mower;
-import io.damru.challenges.blablacar.mower.model.Orientation;
+import io.damru.challenges.blablacar.mowning.model.Action;
+import io.damru.challenges.blablacar.mowning.model.Lawn;
+import io.damru.challenges.blablacar.mowning.model.Mower;
+import io.damru.challenges.blablacar.mowning.model.Orientation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +13,15 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MowServiceTests {
+public class MowningServiceTests {
 
-    private static MowService mowService;
+    private static MowningService mowningService;
     private static Lawn lawn;
     private static HashMap<Mower, LinkedList<Action>> mowersCourses;
 
     @BeforeAll
     public static void init() {
-        mowService = new MowService();
+        mowningService = new MowningService();
     }
 
 
@@ -51,7 +50,7 @@ public class MowServiceTests {
         mowersCourses.put(mowerConfig, actionsConfig);
 
         // When
-        Set<Mower> mowers = mowService.mow(lawn, mowersCourses);
+        Set<Mower> mowers = mowningService.mow(lawn, mowersCourses);
 
         // Then
         assertEquals(1, mowers.size(), "Number of mowers");
