@@ -8,7 +8,7 @@ The company X wants to develop an auto-mower for square surfaces.
 
 The mower can be programmed to go throughout the whole surface. Mower's position is
 represented by coordinates (X,Y) and a characters indicate the orientation according to cardinal notations
-(N,E,W,S).
+(N,E,W,S).<br/>
 The lawn is divided in grid to simplify navigation.
 
 For example, the position can be 0,0,N, meaning the mower is in the lower left of the lawn, and oriented to
@@ -19,10 +19,10 @@ L,R,F. L and R turn the mower at 90° on the left or right without moving the mo
 move forward from one space in the direction in which it faces and without changing the orientation.
 
 If the position after moving is outside the lawn, mower keep it's position. Retains its orientation and go to
-the next command.
+the next command.<br/>
 We assume the position directly to the north of (X,Y) is (X,Y+1).
 
-To program the mower, we can provide an input file constructed as follows:
+To program the mower, we can provide an input file constructed as follows:<br/>
 The first line corresponds to the coordinate of the upper right corner of the lawn. the bottom left corner is
 assumed as (0,0).
 
@@ -40,15 +40,15 @@ performed its series of instructions.
 When a mower has finished, it gives the final position and orientation.
 
 ## Example
-**input file**
-5 5
-1 2 N
-LFLFLFLFF
-3 3 E
+**input file**<br/>
+5 5<br/>
+1 2 N<br/>
+LFLFLFLFF<br/>
+3 3 E<br/>
 FFRFFRFRRF
 
-**result**
-1 3 N
+**result**<br/>
+1 3 N<br/>
 5 1 E
 
 ## Stack 
