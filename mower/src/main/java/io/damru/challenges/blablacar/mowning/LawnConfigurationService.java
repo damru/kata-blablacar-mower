@@ -29,7 +29,7 @@ public class LawnConfigurationService {
             if (lineIndex == 0) {
                 lawnConfiguration.setLawn(lawnConfiguration(values));
             } else {
-                Mower mower = mowerConfiguration(values, lineIndex);
+                Mower mower = mowerConfiguration(lawnConfiguration.getLawn(), values, lineIndex);
                 char[] courseConfig = reader.readLine().toCharArray();
                 lineIndex++;
                 ArrayList<Action> course = courseConfiguration(courseConfig, lineIndex);
@@ -54,11 +54,18 @@ public class LawnConfigurationService {
         return course;
     }
 
-    private Mower mowerConfiguration(String[] mowerValues, int lineIndex) {
+    private Mower mowerConfiguration(Lawn lawn, String[] mowerValues, int lineIndex) {
         Mower mower = new Mower();
         try {
             mower.setX(Integer.parseInt(mowerValues[0]));
             mower.setY(Integer.parseInt(mowerValues[1]));
+
+            if (mower.getX() < lawn.getXMin() || mower.getX() > lawn.getXMax() || mower.getY() < lawn.getYMin() ||
+                mower.getY() > lawn.getYMax()) {
+                throw new ValidationException("Mower configuration is incorrect (line " + lineIndex +
+                                              "): mower cannot start outside of lawn");
+            }
+
             mower.setOrientation(Orientation.fromLabel(mowerValues[2]));
         } catch (Exception e) {
             throw new ValidationException("Mower configuration is incorrect (line " + lineIndex + ").", e);
@@ -74,6 +81,11 @@ public class LawnConfigurationService {
         try {
             lawn.setXMax(Integer.parseInt(coordinates[0]));
             lawn.setYMax(Integer.parseInt(coordinates[1]));
+
+            if (lawn.getXMax() <= lawn.getXMin() || lawn.getYMax() <= lawn.getYMin()) {
+                throw new ValidationException(
+                        "Lawn configuration is incorrect (first line of file): perimeter cannot be null or negative");
+            }
         } catch (NumberFormatException e) {
             throw new ValidationException("Lawn configuration is incorrect (first line of file).", e);
         }
