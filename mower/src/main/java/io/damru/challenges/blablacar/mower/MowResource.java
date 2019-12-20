@@ -27,7 +27,6 @@ public class MowResource {
     }
 
     @PostMapping(
-            path = "/mow",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     public ResponseEntity<Object> mow(@RequestParam("file") MultipartFile config) {
