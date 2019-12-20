@@ -1,5 +1,5 @@
 {
-  "name": "c3po",
+  "name": "mowingplan",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "core-js": "^3.3.2",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "serialize-javascript": ">=2.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
