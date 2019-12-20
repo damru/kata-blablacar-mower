@@ -1,4 +1,4 @@
-package io.damru.challenges.blablacar.mower.model;
+package io.damru.challenges.blablacar.mowning.model;
 
 import lombok.Getter;
 
@@ -26,6 +26,10 @@ public enum Action {
     }
 
     public static Action fromLabel(String label) {
-        return BY_LABEL.get(label);
+        Action a = BY_LABEL.get(label);
+        if (a == null) {
+            throw new IllegalArgumentException("Action " + label + " does not exist");
+        }
+        return a;
     }
 }

@@ -1,13 +1,13 @@
-package io.damru.challenges.blablacar.mower;
+package io.damru.challenges.blablacar.mowing;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlaBlaCarMowApplication {
+public class BlaBlaCarMowingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BlaBlaCarMowApplication.class, args);
+		SpringApplication.run(BlaBlaCarMowingApplication.class, args);
 	}
 
 }

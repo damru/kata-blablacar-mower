@@ -57,13 +57,8 @@ FFRFFRFRRF
 
 ## Ameliorations possibles
 - frontend:
-  - ajouter les tests auto
-  - ajouter recapitulatif des routes enregistrees a l'etape 1 (tableau)
-  - idem pour etape 2
-  - split en plusieurs components:
-    - MillenniumFalcon
-    - Empire
-    - Travel
+
 - backend:
-  - verifier les formats de fichier
-  - verifier la presence du fichier "routesDb"
+  - use Orientation with number (0 to 3) to handle "turn" function
+    - example 1 : NORTH -> go LEFT = 0-1 = -1; -1%4 = 3 = WEST
+	- example 2 : WEST -> go RIGHT = 3+1 = 4; 4%4 = 0 = NORTH
