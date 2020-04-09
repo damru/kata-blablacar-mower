@@ -2,7 +2,6 @@ package io.damru.challenges.blablacar.mowing;
 
 import io.damru.challenges.blablacar.mowing.model.Action;
 import io.damru.challenges.blablacar.mowing.model.Lawn;
-import io.damru.challenges.blablacar.mowing.model.LawnConfiguration;
 import io.damru.challenges.blablacar.mowing.model.Mower;
 import io.damru.challenges.blablacar.mowing.model.Orientation;
 import org.springframework.stereotype.Service;
@@ -19,25 +18,23 @@ public class LawnConfigurationService {
 
     public static final String EMPTY_SPACE = " ";
 
-    public LawnConfiguration load(InputStream inputStream) throws IOException {
-        LawnConfiguration lawnConfiguration = new LawnConfiguration();
+    public Lawn load(InputStream inputStream) throws IOException {
+        Lawn lawn = new Lawn();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         int lineIndex = 0;
         while (reader.ready()) {
             String line = reader.readLine();
             String[] values = line.split(EMPTY_SPACE);
             if (lineIndex == 0) {
-                lawnConfiguration.setLawn(lawnConfiguration(values));
+                lawn = lawnConfiguration(values);
             } else {
-                Mower mower = mowerConfiguration(lawnConfiguration.getLawn(), values, lineIndex);
-                char[] courseConfig = reader.readLine().toCharArray();
-                lineIndex++;
-                ArrayList<Action> course = courseConfiguration(courseConfig, lineIndex);
-                lawnConfiguration.addMowerCourse(mower, course);
+                Mower mower = mowerConfiguration(lawn, values, lineIndex);
+                ArrayList<Action> course = courseConfiguration(reader.readLine().toCharArray(), ++lineIndex);
+                lawn.addMowerCourse(mower, course);
             }
             lineIndex++;
         }
-        return lawnConfiguration;
+        return lawn;
     }
 
     private ArrayList<Action> courseConfiguration(char[] courseConfig, int lineIndex) {

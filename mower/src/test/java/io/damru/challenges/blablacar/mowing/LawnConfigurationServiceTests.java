@@ -1,7 +1,7 @@
 package io.damru.challenges.blablacar.mowing;
 
 
-import io.damru.challenges.blablacar.mowing.model.LawnConfiguration;
+import io.damru.challenges.blablacar.mowing.model.Lawn;
 import io.damru.challenges.blablacar.mowing.model.Mower;
 import io.damru.challenges.blablacar.mowing.model.Orientation;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LawnConfigurationServiceTests {
 
     @InjectMocks
-    private static LawnConfigurationService lawnConfigurationServiceTests;
+    private static LawnConfigurationService lawnConfigurationService;
 
     @Test
     public void lawnConfiguration_should_be_loaded_from_file() throws IOException {
@@ -31,21 +31,21 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/example1.txt");
 
         // When
-        LawnConfiguration lawnConfiguration = lawnConfigurationServiceTests.load(config);
+        Lawn lawn = lawnConfigurationService.load(config);
 
         // Then
-        assertEquals(0, lawnConfiguration.getLawn().getXMin(), "Lawn min X");
-        assertEquals(5, lawnConfiguration.getLawn().getXMax(), "Lawn max X");
-        assertEquals(0, lawnConfiguration.getLawn().getYMin(), "Lawn min Y");
-        assertEquals(5, lawnConfiguration.getLawn().getYMax(), "Lawn max Y");
-        assertEquals(2, lawnConfiguration.getMowersCourses().size(), "Number of mowers to move");
-        Mower firstMower = lawnConfiguration.getMowersCourses().keySet().stream()
-                                            .filter(mower -> Orientation.NORTH.equals(mower.getOrientation()))
-                                            .findFirst().get();
+        assertEquals(0, lawn.getXMin(), "Lawn min X");
+        assertEquals(5, lawn.getXMax(), "Lawn max X");
+        assertEquals(0, lawn.getYMin(), "Lawn min Y");
+        assertEquals(5, lawn.getYMax(), "Lawn max Y");
+        assertEquals(2, lawn.getMowersCourses().size(), "Number of mowers to move");
+        Mower firstMower = lawn.getMowersCourses().keySet().stream()
+                               .filter(mower -> Orientation.NORTH.equals(mower.getOrientation()))
+                               .findFirst().get();
         assertEquals(Orientation.NORTH, firstMower.getOrientation(), "First mower's orientation");
         assertEquals(1, firstMower.getX(), "First mower's X position");
         assertEquals(2, firstMower.getY(), "First mower's Y position");
-        assertEquals(9, lawnConfiguration.getMowersCourses().get(firstMower).size(), "First mower's number of actions");
+        assertEquals(9, lawn.getMowersCourses().get(firstMower).size(), "First mower's number of actions");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/badFormat_lawn_perimeter.txt");
 
         // WhenThen
-        assertThrows(ValidationException.class, () -> lawnConfigurationServiceTests.load(config));
+        assertThrows(ValidationException.class, () -> lawnConfigurationService.load(config));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/badFormat_mower_position.txt");
 
         // WhenThen
-        assertThrows(ValidationException.class, () -> lawnConfigurationServiceTests.load(config));
+        assertThrows(ValidationException.class, () -> lawnConfigurationService.load(config));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/bad_mower_course.txt");
 
         // WhenThen
-        assertThrows(ValidationException.class, () -> lawnConfigurationServiceTests.load(config));
+        assertThrows(ValidationException.class, () -> lawnConfigurationService.load(config));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/bad_mower_position.txt");
 
         // WhenThen
-        assertThrows(ValidationException.class, () -> lawnConfigurationServiceTests.load(config));
+        assertThrows(ValidationException.class, () -> lawnConfigurationService.load(config));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class LawnConfigurationServiceTests {
         InputStream config = loadFile("src/test/resources/bad_lawn_perimeter.txt");
 
         // WhenThen
-        assertThrows(ValidationException.class, () -> lawnConfigurationServiceTests.load(config));
+        assertThrows(ValidationException.class, () -> lawnConfigurationService.load(config));
     }
 
     private InputStream loadFile(String path) throws FileNotFoundException {

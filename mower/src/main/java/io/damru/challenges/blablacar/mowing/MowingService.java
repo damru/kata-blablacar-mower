@@ -6,17 +6,12 @@ import io.damru.challenges.blablacar.mowing.model.Mower;
 import io.damru.challenges.blablacar.mowing.model.Orientation;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
-
 @Service
 class MowingService {
 
 
-    public Set<Mower> mow(Lawn lawn, HashMap<Mower, ArrayList<Action>> mowersCourses) {
-        mowersCourses.forEach((mower, actions) -> actions.forEach(action -> move(lawn, mower, action)));
-        return mowersCourses.keySet();
+    public void mow(Lawn lawn) {
+        lawn.getMowersCourses().forEach((mower, actions) -> actions.forEach(action -> move(lawn, mower, action)));
     }
 
     private void move(Lawn lawn, Mower mower, Action action) {

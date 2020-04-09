@@ -1,7 +1,6 @@
 package io.damru.challenges.blablacar.mowing;
 
-import io.damru.challenges.blablacar.mowing.model.LawnConfiguration;
-import io.damru.challenges.blablacar.mowing.model.Mower;
+import io.damru.challenges.blablacar.mowing.model.Lawn;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -31,9 +29,9 @@ public class MowingResource {
     )
     public ResponseEntity<Object> mow(@RequestParam("file") MultipartFile config) {
         try {
-            LawnConfiguration lawnConfiguration = lawnConfigurationService.load(config.getInputStream());
-            Set<Mower> mowers = mowingService.mow(lawnConfiguration.getLawn(), lawnConfiguration.getMowersCourses());
-            return ResponseEntity.ok(mowers);
+            Lawn lawn = lawnConfigurationService.load(config.getInputStream());
+            mowingService.mow(lawn);
+            return ResponseEntity.ok(lawn.getMowersCourses().keySet());
         } catch (IOException e) {
             return ResponseEntity.unprocessableEntity().body(e.getLocalizedMessage());
         }

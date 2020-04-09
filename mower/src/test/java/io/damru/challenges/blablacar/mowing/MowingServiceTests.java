@@ -48,11 +48,13 @@ public class MowingServiceTests {
         actionsConfig.add(Action.FORWARD);
         actionsConfig.add(Action.FORWARD);
         mowersCourses.put(mowerConfig, actionsConfig);
+        lawn.setMowersCourses(mowersCourses);
 
         // When
-        Set<Mower> mowers = mowingService.mow(lawn, mowersCourses);
+        mowingService.mow(lawn);
 
         // Then
+        Set<Mower> mowers = lawn.getMowersCourses().keySet();
         assertEquals(1, mowers.size(), "Number of mowers");
         Mower mower = mowers.stream().findFirst().get();
         assertEquals(Orientation.NORTH, mower.getOrientation(), "Mower's orientation after course");
@@ -79,11 +81,13 @@ public class MowingServiceTests {
         actionsConfig.add(Action.FORWARD);
         actionsConfig.add(Action.FORWARD);
         mowersCourses.put(mowerConfig, actionsConfig);
+        lawn.setMowersCourses(mowersCourses);
 
         // When
-        Set<Mower> mowers = mowingService.mow(lawn, mowersCourses);
+        mowingService.mow(lawn);
 
         // Then
+        Set<Mower> mowers = lawn.getMowersCourses().keySet();
         Mower mower = mowers.stream().findFirst().get();
         assertEquals(1, mower.getX(), "Mower's last X position");
         assertEquals(0, mower.getY(), "Mower's last Y position");
